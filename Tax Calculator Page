@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Income Tax Calculator</title>
+
+<link relcss
+
+</head>
+
+<body>
+
+<h1>Income Tax Calculator</h1>
+
+<input id="salary"
+type="number"
+placeholder="Annual Income">
+
+<input id="deduction80c"
+type="number"
+placeholder="80C">
+
+<input id="deduction80d"
+type="number"
+placeholder="80D">
+
+<input id="hra"
+type="number"
+placeholder="HRA">
+
+<button onclick="calculateTax()">
+Calculate
+</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+function calculateTax(){
+
+let income=
+Number(document.getElementById("salary").value);
+
+let d80c=
+Number(document.getElementById("deduction80c").value);
+
+let d80d=
+Number(document.getElementById("deduction80d").value);
+
+let hra=
+Number(document.getElementById("hra").value);
+
+let taxable=
+income-50000-d80c-d80d-hra;
+
+let oldTax=0;
+
+if(taxable>500000){
+oldTax=(taxable-500000)*0.2;
+}
+
+let newTax=0;
+
+if(income>700000){
+newTax=(income-700000)*0.1;
+}
+
+let best=
+oldTax<newTax?"Old Regime":"New Regime";
+
+document.getElementById("result").innerHTML=
+
+`
+
+Old Regime Tax: ₹${oldTax.toFixed(0)}
+
+<br><br>
+
+New Regime Tax: ₹${newTax.toFixed(0)}
+
+<br><br>
+
+Recommended: ${best}
+
+<br><br>
+
+Savings: ₹${Math.abs(oldTax-newTax).toFixed(0)}
+
+`;
+
+}
+
+</script>
+
+</body>
+
+</html>
